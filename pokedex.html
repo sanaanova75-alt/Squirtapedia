@@ -162,6 +162,36 @@ footer {
 @media (max-width: 600px) {
   main { padding: 12px; }
 }
+
+/* SQUIRTAPEDIA CUSTOM POKEMON TYPE COLORS */
+
+.type {
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.type-normal { background: #ddddcc; color: #222222; }
+.type-fire { background: #ff6611; }
+.type-water { background: #3377ff; }
+.type-grass { background: #11cc33; color: #163016; }
+.type-fighting { background: #bb1122; }
+.type-poison { background: #cc22cc; }
+.type-ground { background: #eebb77; color: #332211; }
+.type-flying { background: #ccbbff; color: #332244; }
+.type-psychic { background: #ff3377; }
+.type-bug { background: #aaee33; color: #223311; }
+.type-rock { background: #664433; }
+.type-ghost { background: #663388; }
+.type-steel { background: #558888; }
+.type-dragon { background: #1144aa; }
+.type-dark { background: #334466; }
+.type-fairy { background: #ff88bb; color: #442233; }
+.type-ice { background: #33ddff; color: #113344; }
+.type-electric { background: #ffdd11; color: #332900; }
 </style>
 </head>
 
@@ -386,7 +416,7 @@ async function loadPokemonDetails(id, typesElement, descriptionElement) {
 
     pokemon.types.forEach(item => {
       const badge = document.createElement("span");
-      badge.className = "type";
+      badge.className = "type type-" + item.type.name;
       badge.textContent = item.type.name;
       typesElement.appendChild(badge);
     });
