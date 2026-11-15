@@ -1,260 +1,284 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Current Events | Squirtapedia</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #eaf5ff;
-      color: #173b5e;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Events | SQUIRTAPEDIA!</title>
 
-    header {
-      background: #1769aa;
-      color: white;
-      padding: 25px 15px;
-      text-align: center;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-    }
+body {
+  margin: 0;
+  background: #071a36;
+  color: #eef8ff;
+  font-family: Arial, sans-serif;
+}
 
-    nav {
-      background: #0d4778;
-      padding: 14px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
+header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 25px 5%;
+  background: #0b2342;
+  border-bottom: 3px solid #287db2;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
 
-    nav a:hover, nav a.active {
-      color: #9ee7ff;
-    }
+.header-text h1 {
+  margin: 0;
+  font-size: 48px;
+}
 
-    main {
-      max-width: 950px;
-      margin: 35px auto;
-      padding: 25px;
-    }
+.header-text h1 span {
+  color: #69cfff;
+}
 
-    .section {
-      background: white;
-      padding: 22px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #173b5e18;
-    }
+.header-text p {
+  margin: 10px 0 0;
+  font-size: 22px;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: #0d4778;
-      color: white;
-    }
-     .roster-section {
-      background: white;
-      padding: 22px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #173b5e18;
-      overflow-x: auto;
-    }
+nav {
+  background: #102d4e;
+  padding: 25px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-    .roster-section h2 {
-      color: #1769aa;
-      margin-top: 0;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 13px 19px;
+  border: 1px solid #315e82;
+  border-radius: 30px;
+  font-size: 18px;
+}
 
-    .roster-section table {
-      width: 100%;
-      min-width: 700px;
-      border-collapse: collapse;
-    }
+nav a:hover,
+nav a.active {
+  background: #176b9e;
+}
 
-    .roster-section th,
-    .roster-section td {
-      padding: 12px;
-      border: 1px solid #d5e7f5;
-      text-align: left;
-      vertical-align: top;
-    }
+main {
+  max-width: 1500px;
+  margin: 45px auto;
+  padding: 0 5%;
+}
 
-    .roster-section th {
-      background: #1769aa;
-      color: white;
-    }
+h2 {
+  color: #75d5ff;
+}
 
-    .roster-section tbody tr:nth-child(even) {
-      background: #eaf5ff;
-    }
+.section,
+.roster-section {
+  background: #102b4b;
+  border: 1px solid #28618a;
+  border-radius: 16px;
+  padding: 28px;
+  margin: 25px 0;
+  box-shadow: 0 4px 15px #00000025;
+}
 
-    .roster-section tbody tr:hover {
-      background: #d8efff;
-    }
-      .roster-section h2::after {
-      content: " OFFICIAL DATABASE";
-      display: inline-block;
-      font-size: 11px;
-      background: #d8efff;
-      color: #1769aa;
-      padding: 5px 9px;
-      border-radius: 20px;
-      vertical-align: middle;
-      margin-left: 8px;
-    }
-    .image-placeholder {
-      display: inline-block;
-      background: #eaf5ff;
-      color: #1769aa;
-      border: 1px dashed #1769aa;
-      border-radius: 8px;
-      padding: 10px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-      .roster-section tbody td:nth-child(2) {
-      font-weight: bold;
-      color: #1769aa;
-    }
+.section h3 {
+  color: #8edcff;
+  margin-top: 0;
+}
 
-    .roster-section tbody td:nth-child(3) {
-      font-size: 13px;
-      font-weight: bold;
-    }
+.roster-section {
+  overflow-x: auto;
+}
 
-    .roster-section tbody tr {
-      transition: background 0.2s ease;
-    }
-      .roster-section th:first-child,
-    .roster-section td:first-child {
-      text-align: center;
-      font-weight: bold;
-      width: 45px;
-    }
+.roster-section h2 {
+  color: #8edcff;
+}
 
-    .roster-section tbody td:last-child {
-      line-height: 1.5;
-    }
+table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+}
 
-    .roster-section tbody td:nth-child(4),
-    .roster-section tbody td:nth-child(5) {
-      text-align: center;
-    }
-  </style>
+th, td {
+  padding: 14px;
+  border: 1px solid #315e82;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #176b9e;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background: #183958;
+}
+
+tbody tr:hover {
+  background: #20496c;
+}
+
+.image-placeholder {
+  display: inline-block;
+  background: #183958;
+  color: #8edcff;
+  border: 1px dashed #69cfff;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #0b2342;
+  border-top: 2px solid #287db2;
+  color: #b9ddf5;
+}
+
+@media (max-width: 700px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-text h1 {
+    font-size: 34px;
+  }
+
+  nav {
+    justify-content: center;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <h1>SQUIRTAPEDIA</h1>
-    <p>Your Pokémon encyclopedia!</p>
-  </header>
+<header>
+  <img class="logo"
+  src="Screenshot%202026-11-14%20123238.png"
+  alt="Squirtapedia logo">
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="current-events.html" class="active">Current Events</a>
-    <a href="#">TCG Pocket</a>
-    <a href="#">Games</a>
-    <a href="#">Animation/Anime</a>
-    <a href="#">Manga</a>
-    <a href="#">Trading Card Game</a>
-    <a href="pokedex.html">Pokédex</a>
-    <a href="#">Characters</a>
-    <a href="#">Items</a>
-    <a href="#">World</a>
-    <a href="#">Walkthroughs</a>
-    <a href="#">Trainers</a>
-    <a href="#">Regions</a>
-    <a href="#">Evolutions</a>
-    <a href="#">Types</a>
-    <a href="#">Villains/Teams</a>
-    <a href="#">Legendary/Mythical Pokémon</a>
-    <a href="#">Gym Badges</a>
-    <a href="#">More &gt;&gt;</a>
-  </nav>
+  <div class="header-text">
+    <h1>SQUIRTA<span>PEDIA!</span></h1>
+    <p>Your Pokémon encyclopedia adventure starts here.</p>
+  </div>
+</header>
 
-  <main>
-    <h2>Current Events</h2>
-    <p>Keep up with the latest happenings across the Pokémon world!</p>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="current-events.html" class="active">Current Events</a>
+  <a href="#">TCG Pocket</a>
+  <a href="#">Games</a>
+  <a href="#">Animation/Anime</a>
+  <a href="#">Manga</a>
+  <a href="#">Trading Card Game</a>
+  <a href="pokedex.html">Pokédex</a>
+  <a href="#">Characters</a>
+  <a href="#">Items</a>
+  <a href="#">World</a>
+  <a href="#">Walkthroughs</a>
+  <a href="#">Trainers</a>
+  <a href="#">Regions</a>
+  <a href="#">Evolutions</a>
+  <a href="#">Types</a>
+  <a href="#">Villains/Teams</a>
+  <a href="#">Legendary/Mythical Pokémon</a>
+  <a href="#">Gym Badges</a>
+  <a href="#">More &gt;&gt;</a>
+</nav>
 
-    <div class="section">
-      <h3>Pokémon News</h3>
-      <p>News and announcements from across the Pokémon franchise will appear here.</p>
-    </div>
+<main>
+  <h2>Current Events</h2>
+  <p>Keep up with the latest happenings across the Pokémon world!</p>
 
-    <div class="section">
-      <h3>Game Updates</h3>
-      <p>Updates, new features, and announcements about Pokémon games.</p>
-    </div>
+  <div class="section">
+    <h3>Pokémon News</h3>
+    <p>News and announcements from across the Pokémon franchise will appear here.</p>
+  </div>
 
-    <div class="section">
-      <h3>Upcoming Events</h3>
-      <p>Special distributions, competitions, and Pokémon events.</p>
-    </div>
-      <footer>
-    SQUIRTAPEDIA
-  </footer>
-  </main>
+  <div class="section">
+    <h3>Game Updates</h3>
+    <p>Updates, new features, and announcements about Pokémon games.</p>
+  </div>
+
+  <div class="section">
+    <h3>Upcoming Events</h3>
+    <p>Special distributions, competitions, and Pokémon events.</p>
+  </div>
+
   <section class="roster-section">
-  <h2>🏆 Pokémon Champions Rosters</h2>
-<p>Explore the available Pokémon rosters, special competitions, and regulations!</p>
+    <h2>🏆 Pokémon Champions Rosters</h2>
+    <p>Explore the available Pokémon rosters, special competitions, and regulations!</p>
+
     <div class="section">
-  <h3>📋 Roster Database</h3>
-  <p>Browse roster periods, Pokémon counts, and featured regulations.</p>
-</div>
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Banner</th>
-      <th>Artwork</th>
-      <th>Roster Period</th>
-      <th>Key Pokémon</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Regular Roster M-A</td>
-      <td>Regular Roster</td>
-      <td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
-      <td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
-      <td>April 8 – June 17, 2026</td>
-      <td>229 Pokémon from Regulation Set M-A</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Global Challenge 2026</td>
-      <td>Special Roster</td>
-      <td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
-      <td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
-      <td>April 24 – May 4, 2026</td>
-      <td>31 Pokémon for Global Challenge 2026 I</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Regular Roster M-A</td>
-      <td>Regular Roster</td>
-      <td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
-      <td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
-      <td>June 17 – September 2, 2026</td>
-      <td>251 Pokémon from Regulation Set M-B</td>
-    </tr>
-  </tbody>
-</table>
-</section>
+      <h3>📋 Roster Database</h3>
+      <p>Browse roster periods, Pokémon counts, and featured regulations.</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Banner</th>
+          <th>Artwork</th>
+          <th>Roster Period</th>
+          <th>Key Pokémon</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Regular Roster M-A</td>
+          <td>Regular Roster</td>
+          <td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+          <td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
+          <td>April 8 – June 17, 2026</td>
+          <td>229 Pokémon from Regulation Set M-A</td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>Global Challenge 2026</td>
+          <td>Special Roster</td>
+          <td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+          <td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
+          <td>April 24 – May 4, 2026</td>
+          <td>31 Pokémon for Global Challenge 2026 I</td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>Regular Roster M-A</td>
+          <td>Regular Roster</td>
+          <td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+          <td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
+          <td>June 17 – September 2, 2026</td>
+          <td>251 Pokémon from Regulation Set M-B</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  SQUIRTAPEDIA! • A fan-made Pokémon encyclopedia project
+</footer>
+
 </body>
 </html>
