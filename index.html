@@ -123,6 +123,7 @@ const title = document.getElementById("station-title");
 
 document.querySelectorAll("nav a").forEach(link => {
   link.addEventListener("click", event => {
+    if (link.getAttribute("href") !== "#") return;
     event.preventDefault();
     const page = link.dataset.page;
 
