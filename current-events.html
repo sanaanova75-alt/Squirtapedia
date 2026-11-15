@@ -63,6 +63,95 @@
       background: #0d4778;
       color: white;
     }
+     .roster-section {
+      background: white;
+      padding: 22px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px #173b5e18;
+      overflow-x: auto;
+    }
+
+    .roster-section h2 {
+      color: #1769aa;
+      margin-top: 0;
+    }
+
+    .roster-section table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+    }
+
+    .roster-section th,
+    .roster-section td {
+      padding: 12px;
+      border: 1px solid #d5e7f5;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .roster-section th {
+      background: #1769aa;
+      color: white;
+    }
+
+    .roster-section tbody tr:nth-child(even) {
+      background: #eaf5ff;
+    }
+
+    .roster-section tbody tr:hover {
+      background: #d8efff;
+    }
+      .roster-section h2::after {
+      content: " OFFICIAL DATABASE";
+      display: inline-block;
+      font-size: 11px;
+      background: #d8efff;
+      color: #1769aa;
+      padding: 5px 9px;
+      border-radius: 20px;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    .image-placeholder {
+      display: inline-block;
+      background: #eaf5ff;
+      color: #1769aa;
+      border: 1px dashed #1769aa;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+      .roster-section tbody td:nth-child(2) {
+      font-weight: bold;
+      color: #1769aa;
+    }
+
+    .roster-section tbody td:nth-child(3) {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .roster-section tbody tr {
+      transition: background 0.2s ease;
+    }
+      .roster-section th:first-child,
+    .roster-section td:first-child {
+      text-align: center;
+      font-weight: bold;
+      width: 45px;
+    }
+
+    .roster-section tbody td:last-child {
+      line-height: 1.5;
+    }
+
+    .roster-section tbody td:nth-child(4),
+    .roster-section tbody td:nth-child(5) {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -119,6 +208,11 @@
   </main>
   <section class="roster-section">
   <h2>🏆 Pokémon Champions Rosters</h2>
+<p>Explore the available Pokémon rosters, special competitions, and regulations!</p>
+    <div class="section">
+  <h3>📋 Roster Database</h3>
+  <p>Browse roster periods, Pokémon counts, and featured regulations.</p>
+</div>
   <table>
     <thead>
       <tr>
@@ -136,8 +230,10 @@
         <td>1</td>
         <td>Regular Roster M-A</td>
         <td>Regular Roster</td>
-        <td>Coming soon</td>
-<td>Coming soon</td>
+<td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+<td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
+<td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+<td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
         <td>April 8 – June 17, 2026</td>
         <td>229 Pokémon from Regulation Set M-A</td>
       </tr>
@@ -145,8 +241,10 @@
         <td>2</td>
         <td>Global Challenge 2026</td>
         <td>Special Roster</td>
-<td>Coming soon</td>
-<td>Coming soon</td>
+<td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+<td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
+<td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+<td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
 <td>April 24 – May 4, 2026</td>
         <td>31 Pokémon for Global Challenge 2026 I</td>
       </tr>
@@ -154,8 +252,10 @@
         <td>3</td>
         <td>Regular Roster M-A</td>
         <td>Regular Roster</td>
-        <td>Coming soon</td>
-<td>Coming soon</td>
+<td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+<td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
+<td><span class="image-placeholder">🖼️ Banner coming soon</span></td>
+<td><span class="image-placeholder">🎨 Artwork coming soon</span></td>
         <td>June 17 – September 2, 2026</td>
         <td>251 Pokémon from Regulation Set M-B</td>
       </tr>
