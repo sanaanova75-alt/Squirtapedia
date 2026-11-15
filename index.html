@@ -5,14 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SQUIRTAPEDIA!</title>
+
 <style>
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   background: #071a36;
   color: #eef8ff;
   font-family: Arial, sans-serif;
 }
+
 header {
   display: flex;
   align-items: center;
@@ -21,14 +24,17 @@ header {
   background: #0b2342;
   border-bottom: 3px solid #318ac0;
 }
+
 .logo {
   width: 85px;
   height: 85px;
   object-fit: contain;
 }
+
 h1 { margin: 0; font-size: 2.5rem; }
 h1 span { color: #70d5f6; }
 .tagline { color: #c0d9eb; margin-top: 6px; }
+
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -36,26 +42,48 @@ nav {
   padding: 18px 5%;
   background: #0e2b4d;
 }
+
 nav a {
   color: white;
   text-decoration: none;
   border: 1px solid #39688e;
   border-radius: 22px;
   padding: 9px 13px;
+  transition: 0.2s;
 }
+
 nav a:hover, nav a.active {
   background: #17669b;
 }
-main { max-width: 1100px; margin: 35px auto; padding: 0 22px; }
+
+main {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 22px;
+}
+
 .hero {
   padding: 42px;
   border-radius: 20px;
   background: linear-gradient(120deg,#124878,#102849);
   border: 1px solid #39709c;
 }
-.hero h2 { font-size: 2.5rem; margin: 12px 0; }
-.eyebrow { color: #8cdefa; font-weight: bold; }
-p { color: #d1e2ef; line-height: 1.7; }
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin: 12px 0;
+}
+
+.eyebrow {
+  color: #8cdefa;
+  font-weight: bold;
+}
+
+p {
+  color: #d1e2ef;
+  line-height: 1.7;
+}
+
 .station {
   display: none;
   min-height: 350px;
@@ -64,29 +92,50 @@ p { color: #d1e2ef; line-height: 1.7; }
   border: 1px solid #315b80;
   border-radius: 18px;
 }
+
 .station h2 { color: #70d5f6; }
-footer { text-align: center; padding: 35px; color: #9bbbd2; }
+
+.station-links a {
+  display: inline-block;
+  color: #8cdefa;
+  margin: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px;
+  color: #9bbbd2;
+}
+
+@media(max-width:600px) {
+  header { flex-direction: column; text-align: center; }
+  .hero { padding: 25px; }
+  .hero h2 { font-size: 2rem; }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <img class="logo" src="logo.png" alt="Squirtapedia Squirtle logo">
+  <img class="logo" src="logo.png" alt="Squirtapedia logo">
   <div>
     <h1>SQUIRTA<span>PEDIA!</span></h1>
-    <div class="tagline">Your Pokémon encyclopedia adventure starts here.</div>
+    <div class="tagline">
+      Your Pokémon encyclopedia adventure starts here.
+    </div>
   </div>
 </header>
 
 <nav id="navigation">
-  <a href="#" data-page="Home">Home</a>
+  <a href="#" data-page="Home" class="active">Home</a>
   <a href="#" data-page="Current Events">Current Events</a>
   <a href="#" data-page="TCG Pocket">TCG Pocket</a>
   <a href="#" data-page="Games">Games</a>
   <a href="#" data-page="Animation/Anime">Animation/Anime</a>
   <a href="#" data-page="Manga">Manga</a>
   <a href="#" data-page="Trading Card Game">Trading Card Game</a>
-  <a href="pokedex.html">Pokédex</a>   6.
+  <a href="pokedex.html">Pokédex</a>
   <a href="#" data-page="Characters">Characters</a>
   <a href="#" data-page="Items">Items</a>
   <a href="#" data-page="World">World</a>
@@ -102,43 +151,70 @@ footer { text-align: center; padding: 35px; color: #9bbbd2; }
 </nav>
 
 <main>
-  <section class="hero" id="home">
-    <div class="eyebrow">Welcome, Pokémon Trainer!</div>
-    <h2>Welcome to SQUIRTAPEDIA!</h2>
-    <p>Explore Pokémon, discover regions, learn about the games, and uncover facts from across the Pokémon world.</p>
-  </section>
 
-  <section class="station" id="station">
-    <h2 id="station-title"></h2>
-    <p>This section is under construction. Check back soon!</p>
-  </section>
+<section class="hero" id="home">
+  <div class="eyebrow">Welcome, Pokémon Trainer!</div>
+  <h2>Welcome to SQUIRTAPEDIA!</h2>
+  <p>
+    Explore Pokémon, discover regions, learn about the games,
+    and uncover facts from across the Pokémon world.
+  </p>
+  <p>
+    Your adventure through the world of Pokémon starts here!
+  </p>
+</section>
+
+<section class="station" id="station">
+  <h2 id="station-title"></h2>
+  <p id="station-description">
+    Welcome to this section of Squirtapedia!
+  </p>
+  <div class="station-links">
+    <a href="pokedex.html">Visit the Pokédex</a>
+    <a href="#" id="home-link">Return Home</a>
+  </div>
+</section>
+
 </main>
 
-<footer>SQUIRTAPEDIA! • A fan-made Pokémon encyclopedia project</footer>
+<footer>
+  SQUIRTAPEDIA! • A fan-made Pokémon encyclopedia project
+</footer>
 
 <script>
 const home = document.getElementById("home");
 const station = document.getElementById("station");
 const title = document.getElementById("station-title");
 
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", event => {
-    if (link.getAttribute("href") !== "#") return;
-    event.preventDefault();
-    const page = link.dataset.page;
-
-    document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-    link.classList.add("active");
-
-    if (page === "Home") {
-      home.style.display = "block";
-      station.style.display = "none";
-    } else {
-      home.style.display = "none";
-      station.style.display = "block";
-      title.textContent = page;
-    }
+function showPage(page, activeLink) {
+  document.querySelectorAll("nav a").forEach(link => {
+    link.classList.remove("active");
   });
+
+  if (activeLink) activeLink.classList.add("active");
+
+  if (page === "Home") {
+    home.style.display = "block";
+    station.style.display = "none";
+  } else {
+    home.style.display = "none";
+    station.style.display = "block";
+    title.textContent = page;
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("nav a[data-page]").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    showPage(link.dataset.page, link);
+  });
+});
+
+document.getElementById("home-link").addEventListener("click", event => {
+  event.preventDefault();
+  showPage("Home", document.querySelector('[data-page="Home"]'));
 });
 </script>
 
