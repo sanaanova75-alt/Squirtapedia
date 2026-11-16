@@ -224,7 +224,9 @@ footer {
   <option value="choose">Choose a Pokédex</option>
   <option value="national">National Pokédex</option>
 </select>
-  <p class="results-info" id="resultsInfo">
+</section>
+
+<p class="results-info" id="resultsInfo">
     Loading the Pokédex...
   </p>
 
@@ -263,6 +265,7 @@ let allPokemon = [];
 let filteredPokemon = [];
 let currentPage = 1;
 let searchTimer;
+let alternateForms = [];
 
 function getId(url) {
   return Number(url.split("/").filter(Boolean).pop());
@@ -307,17 +310,53 @@ async function getCached(url) {
 
 async function loadDex() {
   try {
-    const data = await getCached(
-      API + "/pokemon-species/?limit=2000"
-    );
+    resultsInfo.textContent = "Loading all Pokémon and alternate forms...";
 
-    allPokemon = data.results.map(item => ({
+    const [speciesData, pokemonData] = await Promise.all([
+      getCached(API + "/pokemon-species/?limit=2000"), 
+      getCached(API + "/pokemon/?limit=2000")
+    ]);
+
+    allPokemon = speciesData.results.map(item => ({
       name: item.name,
-      id: getId(item.url)
-    })).sort((a, b) => a.id - b.id);
+      id: getId(item.url),
+      apiName: item.name
+    }));
+
+    alternateForms = pokemonData.results
+      .map(item => {
+        const apiName = item.name;
+        const id = getId(item.url);
+
+        if (
+          apiName.includes("-alola") ||
+          apiName.includes("-galar") ||
+          apiName.includes("-hisui") ||
+          apiName.includes("-paldea") ||
+          apiName.includes("-mega") ||
+          apiName.includes("-primal")
+        ) {
+          return {
+            name: apiName,
+            displayName: capitalize(apiName.replace(/-/g, " ")),
+            id: id,
+            apiName: apiName,
+            imageUrl:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+              id + ".png"
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean);
+
+    allPokemon = [...allPokemon, ...alternateForms];
 
     filterPokemon();
+
   } catch (error) {
+    console.error(error);
     resultsInfo.textContent =
       "We couldn't load the Pokédex. Please check your internet connection and refresh.";
   }
@@ -336,12 +375,14 @@ function filterPokemon() {
   }
 
   filteredPokemon = allPokemon.filter(pokemon => {
-    const matchesSearch =
-      pokemon.name.includes(term) ||
-      String(pokemon.id).includes(term);
+  const matchesSearch =
+    pokemon.name.includes(term) ||
+    (pokemon.displayName || "").toLowerCase().includes(term) ||
+    String(pokemon.id).includes(term);
 
-    return matchesSearch;
-  });
+  return matchesSearch;
+});
+ 
 
   currentPage = 1;
   renderPage();
@@ -353,14 +394,14 @@ function filterPokemon() {
 
   const number = document.createElement("p");
   number.className = "pokemon-number";
-  number.textContent = "#" + String(pokemon.id).padStart(4, "0");
+  number.textContent = "#" + String(pokemon.dexNumber || pokemon.id).padStart(4, "0");
 
   const image = document.createElement("img");
-  image.alt = capitalize(pokemon.name);
+  image.alt = pokemon.displayName || capitalize(pokemon.name);
   image.loading = "lazy";
-  image.src =
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
-    pokemon.id + ".png";
+  image.src = pokemon.imageUrl ||
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+  pokemon.id + ".png";
 
   image.onerror = () => {
     image.alt = "Artwork unavailable";
@@ -368,7 +409,7 @@ function filterPokemon() {
 
   const name = document.createElement("h3");
   name.className = "pokemon-name";
-  name.textContent = capitalize(pokemon.name);
+  name.textContent = pokemon.displayName || capitalize(pokemon.name);
 
   const types = document.createElement("div");
   types.className = "types";
@@ -380,17 +421,17 @@ function filterPokemon() {
 
   card.append(number, image, name, types, description);
 
-  loadPokemonDetails(pokemon.id, types, description);
+  loadPokemonDetails(pokemon.id, types, description, pokemon.apiName || pokemon.name);
 
   return card;
 }
 
-async function loadPokemonDetails(id, typesElement, descriptionElement) {
+async function loadPokemonDetails(id, typesElement, descriptionElement, apiName = id) {
   try {
     const [pokemon, species] = await Promise.all([
-      getCached(API + "/pokemon/" + id),
-      getCached(API + "/pokemon-species/" + id)
-    ]);
+  getCached(API + "/pokemon/" + apiName),
+  getCached(API + "/pokemon-species/" + id)
+]);
 
     typesElement.replaceChildren();
 
