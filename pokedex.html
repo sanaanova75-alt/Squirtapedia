@@ -433,12 +433,11 @@ number.textContent = pokemon.hideNumber
 
 async function loadPokemonDetails(id, typesElement, descriptionElement, apiName = id) {
   try {
+const pokemon = await getCached(API + "/pokemon/" + apiName);
+
 const baseSpeciesId = pokemon.species.url.split("/").filter(Boolean).pop();
 
-const [pokemonData, species] = await Promise.all([
-  Promise.resolve(pokemon),
-  getCached(API + "/pokemon-species/" + baseSpeciesId)
-]);
+const species = await getCached(API + "/pokemon-species/" + baseSpeciesId);
 
     typesElement.replaceChildren();
 
