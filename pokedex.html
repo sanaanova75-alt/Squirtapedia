@@ -441,7 +441,7 @@ const species = await getCached(API + "/pokemon-species/" + baseSpeciesId);
 
     typesElement.replaceChildren();
 
-    pokemonData.types.forEach(item => {
+    pokemon.types.forEach(item => {
       const badge = document.createElement("span");
       badge.className = "type type-" + item.type.name;
       badge.textContent = item.type.name;
@@ -455,8 +455,9 @@ const species = await getCached(API + "/pokemon-species/" + baseSpeciesId);
     descriptionElement.textContent = englishEntry
       ? englishEntry.flavor_text.replace(/[\f\n\r]/g, " ")
       : "Discover more about this Pokémon!";
-  } catch (error) {
-    typesElement.textContent = "Information unavailable";
+} catch (error) {
+  console.error("Pokémon loading error:", error);
+   typesElement.textContent = "Information unavailable";
     descriptionElement.textContent =
       "Try refreshing to load this Pokémon's details.";
   }
