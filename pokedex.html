@@ -327,6 +327,8 @@ async function loadDex() {
       .map(item => {
         const apiName = item.name;
         const id = getId(item.url);
+       const baseName = apiName.replace(/-(alola|galar|hisui|paldea|mega|primal).*$/, "");
+const dexNumber = allPokemon.find(p => p.name === baseName)?.id || id;
 
         if (
           apiName.includes("-alola") ||
@@ -340,6 +342,8 @@ async function loadDex() {
             name: apiName,
             displayName: capitalize(apiName.replace(/-/g, " ")),
             id: id,
+           dexNumber: dexNumber,
+hideNumber: apiName.includes("-mega") || apiName.includes("-primal"),
             apiName: apiName,
             imageUrl:
               "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
