@@ -327,7 +327,7 @@ async function loadDex() {
       .map(item => {
         const apiName = item.name;
         const id = getId(item.url);
-       const baseName = apiName.replace(/-(alola|galar|hisui|paldea|mega|primal).*$/, "");
+       const baseName = apiName.replace(/-(alola|galar|hisui|paldea|gmax|mega|primal).*$/, "");
 const dexNumber = allPokemon.find(p => p.name === baseName)?.id || id;
 
         if (
@@ -335,7 +335,8 @@ const dexNumber = allPokemon.find(p => p.name === baseName)?.id || id;
           apiName.includes("-galar") ||
           apiName.includes("-hisui") ||
           apiName.includes("-paldea") ||
-          apiName.includes("-mega") ||
+apiName.includes("-gmax") ||
+apiName.includes("-mega") ||
           apiName.includes("-primal")
         ) {
           return {
@@ -457,7 +458,7 @@ const species = await getCached(API + "/pokemon-species/" + baseSpeciesId);
       : "Discover more about this Pokémon!";
 } catch (error) {
   console.error("Pokémon loading error:", error);
-   typesElement.textContent = "Information unavailable";
+   typesElement.textContent = error.message;
     descriptionElement.textContent =
       "Try refreshing to load this Pokémon's details.";
   }
