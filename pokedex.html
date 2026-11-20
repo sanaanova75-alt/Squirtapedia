@@ -398,8 +398,9 @@ function filterPokemon() {
 
   const number = document.createElement("p");
   number.className = "pokemon-number";
-  number.textContent = "#" + String(pokemon.dexNumber || pokemon.id).padStart(4, "0");
-
+number.textContent = pokemon.hideNumber
+  ? ""
+  : "#" + String(pokemon.dexNumber || pokemon.id).padStart(4, "0");
   const image = document.createElement("img");
   image.alt = pokemon.displayName || capitalize(pokemon.name);
   image.loading = "lazy";
