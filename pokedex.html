@@ -232,11 +232,7 @@ footer {
 
   <section class="dex-grid" id="pokemonGrid"></section>
 
-  <div class="pagination">
-    <button id="previousButton" disabled>← Previous</button>
-    <span id="pageNumber">Page 1</span>
-    <button id="nextButton" disabled>Next →</button>
-  </div>
+
 
 </main>
 
@@ -251,11 +247,7 @@ const grid = document.getElementById("pokemonGrid");
 const search = document.getElementById("search");
 const generation = document.getElementById("generation");
 const resultsInfo = document.getElementById("resultsInfo");
-const pageNumber = document.getElementById("pageNumber");
-const previousButton = document.getElementById("previousButton");
-const nextButton = document.getElementById("nextButton");
 
-const PAGE_SIZE = 24;
 
 const generationRanges = {
   national: [1, 1025]
@@ -263,7 +255,6 @@ const generationRanges = {
 
 let allPokemon = [];
 let filteredPokemon = [];
-let currentPage = 1;
 let searchTimer;
 let alternateForms = [];
 
@@ -376,7 +367,6 @@ function filterPokemon() {
 
   if (selectedDex === "choose") {
     filteredPokemon = [];
-    currentPage = 1;
     renderPage();
     resultsInfo.textContent = "Please choose a Pokédex.";
     return;
@@ -392,7 +382,6 @@ function filterPokemon() {
 });
  
 
-  currentPage = 1;
   renderPage();
  }
  function createCard(pokemon) {
@@ -470,29 +459,10 @@ const species = await getCached(API + "/pokemon-species/" + baseSpeciesId);
 function renderPage() {
   grid.replaceChildren();
 
-  const total = filteredPokemon.length;
-  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
-
-  if (currentPage > totalPages) {
-    currentPage = totalPages;
-  }
-
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const pagePokemon = filteredPokemon.slice(
-    start,
-    start + PAGE_SIZE
-  );
-
   resultsInfo.textContent =
-    total + " Pokémon found.";
+    filteredPokemon.length + " Pokémon found.";
 
-  pageNumber.textContent =
-    "Page " + currentPage + " of " + totalPages;
-
-  previousButton.disabled = currentPage === 1;
-  nextButton.disabled = currentPage >= totalPages;
-
-  if (pagePokemon.length === 0) {
+  if (filteredPokemon.length === 0) {
     const message = document.createElement("p");
     message.className = "message";
     message.textContent =
@@ -501,33 +471,10 @@ function renderPage() {
     return;
   }
 
-  pagePokemon.forEach(pokemon => {
+  filteredPokemon.forEach(pokemon => {
     grid.appendChild(createCard(pokemon));
   });
 }
-
-search.addEventListener("input", () => {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(filterPokemon, 250);
-});
-
-generation.addEventListener("change", filterPokemon);
-
-previousButton.addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-    renderPage();
-    window.scrollTo(0, 0);
-  }
-});
-
-nextButton.addEventListener("click", () => {
-  if (currentPage * PAGE_SIZE < filteredPokemon.length) {
-    currentPage++;
-    renderPage();
-    window.scrollTo(0, 0);
-  }
-});
 
 loadDex();
 </script>
