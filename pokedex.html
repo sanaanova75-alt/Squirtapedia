@@ -331,7 +331,8 @@ async function loadDex() {
 const dexNumber = allPokemon.find(p => p.name === baseName)?.id || id;
 
         if (
-          apiName.includes("-alola") ||
+          !apiName.includes("-alola-cap") &&
+         apiName.includes("-alola") ||
           apiName.includes("-galar") ||
           apiName.includes("-hisui") ||
           apiName.includes("-paldea") ||
