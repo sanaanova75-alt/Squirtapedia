@@ -330,16 +330,18 @@ async function loadDex() {
        const baseName = apiName.replace(/-(alola|galar|hisui|paldea|gmax|mega|primal).*$/, "");
 const dexNumber = allPokemon.find(p => p.name === baseName)?.id || id;
 
-        if (
-          !apiName.includes("-alola-cap") &&
-         apiName.includes("-alola") ||
-          apiName.includes("-galar") ||
-          apiName.includes("-hisui") ||
-          apiName.includes("-paldea") ||
-apiName.includes("-gmax") || 
-apiName.includes("-mega") ||
-          apiName.includes("-primal")
-        ) {
+if (
+  !apiName.includes("-alola-cap") &&
+  (
+    apiName.includes("-alola") ||
+    apiName.includes("-galar") ||
+    apiName.includes("-hisui") ||
+    apiName.includes("-paldea") ||
+    apiName.includes("-gmax") ||
+    apiName.includes("-mega") ||
+    apiName.includes("-primal")
+  )
+) {
           return {
             name: apiName,
             displayName: capitalize(apiName.replace(/-/g, " ")),
