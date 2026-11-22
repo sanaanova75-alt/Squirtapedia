@@ -245,6 +245,7 @@ const API = "https://pokeapi.co/api/v2";
 
 const grid = document.getElementById("pokemonGrid");
 const search = document.getElementById("search");
+search.addEventListener("input", filterPokemon);
 const generation = document.getElementById("generation");
 const resultsInfo = document.getElementById("resultsInfo");
 
